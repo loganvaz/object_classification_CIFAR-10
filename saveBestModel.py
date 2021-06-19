@@ -392,7 +392,10 @@ else:
 
         print("if model1 has better accuracy, am moving it to finalModel folder")
 
+
+        
         if (validationScore1[1]>validationScore2[1]):
+            bestModel = model
             print("first is better, moving")
             os.chdir(otherPath)
             for file in os.listdir():
@@ -401,7 +404,28 @@ else:
             print("model need to keep is " + str(firstModelIs))
 
         else:
+            bestModel = model2
             print("each model same AND/OR current final is better")
             print("model need to keep is " + str(secondModelIs))
+
+
+revealTest = True # should only use with final model
+if (revealTest):
+    os.chdir("..")
+    information = unpickle(os.getcwd()+"\\cifar-10-batches-py\\test_batch")
+    X = information[b'data']
+    y = information[b'labels']
+
+
+    y = to_categorical(y)
+            
+    X = [np.transpose(np.reshape(image, newshape=(32,32,3), order="F"), axes=(1,0,2)) for image in X]
+    X = np.array(X)
+    X = X/255
+
+    score = bestModel.evaluate(X, y, verbose=0)#these are test
+    print("test info (loss, acc):")
+    print(score)
+    
                     
   
