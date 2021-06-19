@@ -30,3 +30,9 @@ we have the unpickle function to parse the data
 we load the weights in both folders (one where model from previous trianing was stored, one where best trianing model was stored) into model and model2, trusting that the weights will only load into appropriate models (could be wrong, but believe that assumption is just Weights(1) != Weights(2) which seems reasonable so long as we're changing stuff other than just Dropout)
 
 next we look at how each perform on teh validation set, figiure out which is better, move it to the finalModel folder and print whether it was firstModel or secondModel code that needs to be kept
+
+# RESULTS
+
+we achieved a validation accuracy of 86.875% validation acccuracy
+
+we achieved, with the best model, a test accuracy of 85.04%
